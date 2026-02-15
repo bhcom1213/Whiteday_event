@@ -11,8 +11,8 @@ body{
     min-height:100vh;
     display:flex;
     justify-content:center;
-    align-items: flex-start; 
-    padding-top: 60px; 
+    align-items: flex-start; /* 상자를 맨 위로 배치 */
+    padding-top: 60px; /* 위쪽 여백 */
     background-image:linear-gradient(rgba(0,0,0,0.15),rgba(0,0,0,0.15)),url("01.JPG");
     background-size:cover;
     background-position:center;
@@ -22,7 +22,7 @@ body{
     transition:background-image 0.5s ease;
 }
 .card{
-    background:rgba(255,255,255,0.4) !important; 
+    background:rgba(255,255,255,0.4) !important; /* 반투명도 40% 적용 */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding:20px;
@@ -32,11 +32,11 @@ body{
     max-width:300px; 
     width:85%;
     border: 1px solid rgba(255,255,255,0.2);
-    z-index: 10; /* 버튼 클릭이 잘 되도록 우선순위 높임 */
+    z-index: 10;
 }
 h1{font-size:16px;margin-bottom:20px;line-height:1.5;word-break:keep-all;color:#000}
 .btn-container{position:relative;width:240px;height:50px;margin:0 auto}
-.btn{position:absolute;top:0;width:100px;height:40px;border-radius:20px;border:none;font-size:14px;cursor:pointer;transition:transform .15s ease;user-select:none}
+.btn{position:absolute;top:0;width:100px;height:40px;border-radius:20px;border:none;font-size:14px;cursor:pointer;transition:transform 0.15s ease;user-select:none}
 .yes{left:0;background:#ff4d6d;color:#fff;z-index:20}
 .no{left:140px;background:#d6d6d6;color:#111;z-index:15}
 .result{margin-top:15px;font-size:15px;font-weight:700;color:#ff4d6d;display:none}
@@ -46,12 +46,12 @@ h1{font-size:16px;margin-bottom:20px;line-height:1.5;word-break:keep-all;color:#
 </head>
 <body>
 <div class="card">
-    <h1>⭐ 발렌타인데이는 같이 못 보냈으니<br>화이트데이는 나랑 보내자</h1>
+    <h1>⭐ 발렌타인데이는 같이 못 보냈으니<br>화이트데이는 나랑 보내쟈 ⭐️</h1>
     <div class="btn-container" id="btnArea">
         <button class="btn yes" id="yesBtn" type="button">Yes</button>
         <button class="btn no" id="noBtn" type="button">No</button>
     </div>
-    <div id="result" class="result">❤️ No는 없어 공쥬야 나랑 보내자~~ ❤️</div>
+    <div id="result" class="result">❤️ No는 없어 공쥬야 나랑 보내쟈~~ ❤️</div>
 </div>
 <script>
 const yesBtn=document.getElementById("yesBtn"),
@@ -60,8 +60,8 @@ const yesBtn=document.getElementById("yesBtn"),
       result=document.getElementById("result");
 
 yesBtn.addEventListener("click",()=>{
-    /* 02 파일명을 소문자 .jpg로 확실히 지정 */
-    document.body.style.backgroundImage='linear-gradient(rgba(0,0,0,0.15),rgba(0,0,0,0.15)),url("02.jpg")';
+    /* 02.jpg 뒤에 ?v=1을 붙여 아이폰에서 강제로 새로고침하게 만듦 */
+    document.body.style.backgroundImage='linear-gradient(rgba(0,0,0,0.15),rgba(0,0,0,0.15)),url("02.jpg?v=1")';
     result.style.display="block";
     createHearts();
 });
