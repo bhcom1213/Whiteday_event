@@ -11,34 +11,38 @@ body{
     min-height:100vh;
     display:flex;
     justify-content:center;
-    /* ⭐ 아래를 flex-end로 바꾸면 상자가 아래로 내려갑니다 */
-    align-items:center; 
-    background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url("01.JPG");
+    /* ⭐ 상자를 화면 하단으로 배치 */
+    align-items: flex-end; 
+    /* ⭐ 하단에서 살짝 띄우기 */
+    padding-bottom: 60px; 
+    background-image:linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url("01.JPG");
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
     font-family:sans-serif;
     overflow:hidden;
     transition:background-image .5s ease;
-    padding:24px;
 }
 .card{
-    /* ⭐ 투명도를 0.95에서 0.7 정도로 낮춰서 배경이 비치게 함 */
-    background:rgba(255,255,255,0.75);
-    padding:20px; /* 상자 안쪽 여백 줄임 */
-    border-radius:15px;
+    /* ⭐ 투명도를 0.5로 낮추고 중요도(!important) 부여 */
+    background:rgba(255,255,255,0.5) !important; 
+    /* ⭐ 뒤 배경이 비치는 유리 효과 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding:20px;
+    border-radius:25px;
     text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-    /* ⭐ 상자 너비를 더 좁게 조절 */
+    box-shadow:0 8px 32px rgba(0,0,0,0.1);
     max-width:320px; 
-    width:100%;
+    width:90%;
+    border: 1px solid rgba(255,255,255,0.2);
 }
-h1{font-size:16px;margin-bottom:20px;line-height:1.5;word-break:keep-all}
+h1{font-size:16px;margin-bottom:20px;line-height:1.5;word-break:keep-all;color:#000}
 .btn-container{position:relative;width:240px;height:50px;margin:0 auto}
 .btn{position:absolute;top:0;width:100px;height:40px;border-radius:20px;border:none;font-size:14px;cursor:pointer;transition:transform .15s ease;user-select:none}
 .yes{left:0;background:#ff4d6d;color:#fff;z-index:2}
 .no{left:140px;background:#d6d6d6;color:#111;z-index:1}
-.result{margin-top:15px;font-size:16px;font-weight:700;color:#ff4d6d;display:none}
+.result{margin-top:15px;font-size:15px;font-weight:700;color:#ff4d6d;display:none}
 .heart{position:fixed;pointer-events:none;animation:float 2.8s linear forwards}
 @keyframes float{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-300px);opacity:0}}
 </style>
@@ -55,14 +59,5 @@ h1{font-size:16px;margin-bottom:20px;line-height:1.5;word-break:keep-all}
 <script>
 const yesBtn=document.getElementById("yesBtn"),noBtn=document.getElementById("noBtn"),btnArea=document.getElementById("btnArea"),result=document.getElementById("result");
 yesBtn.addEventListener("click",()=>{
-    /* ⭐ 사진이 바뀌어도 배경이 잘 보이게 대문자 유지 */
-    document.body.style.backgroundImage='linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url("02.JPG")';
+    document.body.style.backgroundImage='linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url("02.JPG")';
     result.style.display="block";
-    createHearts();
-});
-function createHearts(){for(let e=0;e<20;e++){const t=document.createElement("div");t.className="heart",t.textContent="❤️",t.style.left=Math.random()*window.innerWidth+"px",t.style.top=window.innerHeight+"px",document.body.appendChild(t),setTimeout(()=>t.remove(),2800)}}
-function moveNo(){const e=100,t=40,n=btnArea.clientWidth-e,o=btnArea.clientHeight-t,l=Math.random()*n,a=Math.random()*o;noBtn.style.left=l+"px",noBtn.style.top=a+"px"}
-noBtn.addEventListener("mouseenter",moveNo),noBtn.addEventListener("click",e=>{e.preventDefault(),moveNo()}),window.addEventListener("load",()=>{noBtn.style.left="140px",noBtn.style.top="0px"});
-</script>
-</body>
-</html>
